@@ -31,3 +31,11 @@ fetch('make_request.php').then(function(response) {
 	comicsDiv.appendChild(comicsFragment); // we only update the document once!
 	
 });
+
+const txtBox = document.querySelector("#srch-txt-box"); //get hold of the text box
+const srchBtn = document.querySelector(".searchBtn");
+
+srchBtn.addEventListener('click', function () {
+  console.log('The button was clicked!');
+  console.log(txtBox.value); //displays whatever the user has entered into txtBox.
+});
