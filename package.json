@@ -1,0 +1,23 @@
+{
+  "name": "bodzcomicz-comicvine",
+  "version": "1.0.0",
+  "description": "a comic app based on the comicvine api",
+  "main": "ajax.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Boddwin/bodzcomicz-comicvine.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Boddwin/bodzcomicz-comicvine/issues"
+  },
+  "homepage": "https://github.com/Boddwin/bodzcomicz-comicvine#readme",
+  "dependencies": {
+    "axios": "^0.19.2"
+  }
+}
