@@ -3,7 +3,7 @@ const srchBtn = document.querySelector(".searchBtn");
 srchBtn.addEventListener('click', function (event) {
 	event.preventDefault();	
 
-	const txtBox = document.querySelector("#search"); //get hold of the text box	
+	const txtBox = document.querySelector('#search'); //get hold of the text box	
  	console.log('The button was clicked!');
 	console.log(txtBox.value); //displays whatever the user has entered into txtBox.
 	  
