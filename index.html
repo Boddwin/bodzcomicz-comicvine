@@ -15,29 +15,41 @@
                 <div class="nav-wrapper">
                   <a href="#" class="brand-logo">BodzComicz</a>
                   <ul id="nav-mobile" class="right hide-on-med-and-down">
-                    <li><a href="sass.html">Sass</a></li>
-                    <li><a href="badges.html">Components</a></li>
-                    <li><a href="collapsible.html">JavaScript</a></li>
+                    <li><a href="#">Comics</a></li>
+                    <li><a href="#">Characters</a></li>
+                    <li><a href="#">Movies</a></li>
                   </ul>
                 </div>
               </nav>
             <!-- <h1 class="center-align">BodzComicz</h1> -->
             <div id="comics">
                 <form>
+                  <div class="input-field">
+                    <label for="option-select">Choose:</label>
+                    <select id="choice">
+                        <option value="">--Please choose an option--</option>
+                        <option value="issue">Issue</option>
+                        <option value="volume">Volume</option>
+                        <option value="series">Series</option>
+                        <option value="character">Character</option>
+                        <option value="movie">Movie</option>
+                    </select>
+                    </div>
                     <div class="input-field">
                       <input id="search" type="search" required>
                       <label class="label-icon" for="search"><i class="material-icons">search</i></label>
                       <i class="material-icons">close</i>
                     </div>
+                    
                     <button class="btn waves-effect waves-light searchBtn" type="submit" name="action">Submit
-                        <i class="material-icons right">send</i>
-                      </button>
-                  </form>
+                      <i class="material-icons right">send</i>
+                    </button>
+                </form>
             </div>
         </div>    
         <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/fetch-jsonp/1.0.6/fetch-jsonp.min.js"></script>
-        <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+        <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/fetch-jsonp/1.0.6/fetch-jsonp.min.js"></script> -->
+        <!-- <script src="https://unpkg.com/axios/dist/axios.min.js"></script> -->
         <script src="js/ajax.js"></script>
     </body>
 </html>

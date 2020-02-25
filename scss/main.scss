@@ -5,3 +5,25 @@ body {
   font: 100% $font-stack;
   color: $primary-color;
 }
+
+figure {
+    margin: 0!important;
+    width: 100%!important;
+    img {
+        max-width: 100%;
+    }
+}
+
+#comics {
+    max-width: 100%;
+    img {
+        width: 100%!important;
+    }
+}   
+
+.input-field>label {
+    position: relative!important;
+}
+select {
+    display: block!important;
+}

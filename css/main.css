@@ -2,4 +2,21 @@ body {
   font: 100% Helvetica, sans-serif;
   color: #333; }
 
+figure {
+  margin: 0 !important;
+  width: 100% !important; }
+  figure img {
+    max-width: 100%; }
+
+#comics {
+  max-width: 100%; }
+  #comics img {
+    width: 100% !important; }
+
+.input-field > label {
+  position: relative !important; }
+
+select {
+  display: block !important; }
+
 /*# sourceMappingURL=main.css.map */

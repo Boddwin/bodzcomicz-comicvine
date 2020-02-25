@@ -3,16 +3,22 @@ const srchBtn = document.querySelector(".searchBtn");
 srchBtn.addEventListener('click', function (event) {
 	event.preventDefault();	
 
-	const txtBox = document.querySelector('#search'); //get hold of the text box	
- 	console.log('The button was clicked!');
+	const choice = document.querySelector('#choice');
+	const txtBox = document.querySelector('#search'); //get hold of the text box
+
+	console.log('The button was clicked!');
+	console.log(choice.value);
 	console.log(txtBox.value); //displays whatever the user has entered into txtBox.
-	  
-	fetch(`make_request.php?searchterm=${txtBox.value}`).then(function(response) {
+
+	const query = `make_request.php?searchoption=${choice.value}&searchterm=${txtBox.value}`;
+	// const query = `make_request.php?searchterm=${txtBox.value}`;
+
+	// fetch(`make_request.php?searchoption=${choice.value}&?searchterm=${txtBox.value}`).then(function(response) {
+		fetch(query).then(function(response) {
 		return response.json();
 	}).then(function(json) {
 		const comics = json;
 		console.log(comics);
-		console.log(txtBox.value);
 	
 		comics.results.forEach(function(comic){
 			// console.log(`Title ${comic.name} Description ${comic.description} Image ${comic.image.meduim_url}`);		
