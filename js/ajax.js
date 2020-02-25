@@ -12,9 +12,8 @@ srchBtn.addEventListener('click', function (event) {
 
 	const query = `make_request.php?searchoption=${choice.value}&searchterm=${txtBox.value}`;
 
-	
 	const myNode = document.getElementById("results");
-	myNode.innerHTML = '';
+  	myNode.textContent = '';
 
 	fetch(query).then(function(response) {
 		return response.json();
