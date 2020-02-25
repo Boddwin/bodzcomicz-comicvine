@@ -10,14 +10,15 @@ figure {
     margin: 0!important;
     width: 100%!important;
     img {
-        max-width: 100%;
+        max-width: 400px!important;
     }
 }
 
-#comics {
+#results {
     max-width: 100%;
     img {
         width: 100%!important;
+        max-width: 400px;
     }
 }   
 

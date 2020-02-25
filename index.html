@@ -12,39 +12,41 @@
     <body>
         <div class="container">
             <nav>
-                <div class="nav-wrapper">
-                  <a href="#" class="brand-logo">BodzComicz</a>
-                  <ul id="nav-mobile" class="right hide-on-med-and-down">
-                    <li><a href="#">Comics</a></li>
-                    <li><a href="#">Characters</a></li>
-                    <li><a href="#">Movies</a></li>
-                  </ul>
-                </div>
-              </nav>
+              <div class="nav-wrapper">
+                <a href="#" class="brand-logo">BodzComicz</a>
+                <ul id="nav-mobile" class="right hide-on-med-and-down">
+                  <li><a href="#">Comics</a></li>
+                  <li><a href="#">Characters</a></li>
+                  <li><a href="#">Movies</a></li>
+                </ul>
+              </div>
+            </nav>
             <!-- <h1 class="center-align">BodzComicz</h1> -->
-            <div id="comics">
+            <div id="search-options">
                 <form>
                   <div class="input-field">
                     <label for="option-select">Choose:</label>
                     <select id="choice">
                         <option value="">--Please choose an option--</option>
-                        <option value="issue">Issue</option>
-                        <option value="volume">Volume</option>
-                        <option value="series">Series</option>
                         <option value="character">Character</option>
-                        <option value="movie">Movie</option>
+                        <option value="issue">Issue</option>
+                        <option value="movie">Movie</option>                        
+                        <option value="series">Series</option>
+                        <option value="volume">Volume</option>
                     </select>
                     </div>
                     <div class="input-field">
                       <input id="search" type="search" required>
-                      <label class="label-icon" for="search"><i class="material-icons">search</i></label>
-                      <i class="material-icons">close</i>
-                    </div>
-                    
+                      <!-- <label class="label-icon" for="search"><i class="material-icons">search</i></label> -->
+                      <!-- <i class="material-icons">close</i> -->
+                    </div>                    
                     <button class="btn waves-effect waves-light searchBtn" type="submit" name="action">Submit
                       <i class="material-icons right">send</i>
                     </button>
                 </form>
+            </div>
+            <div id="results">
+
             </div>
         </div>    
         <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>

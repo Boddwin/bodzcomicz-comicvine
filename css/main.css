@@ -6,12 +6,13 @@ figure {
   margin: 0 !important;
   width: 100% !important; }
   figure img {
-    max-width: 100%; }
+    max-width: 400px !important; }
 
-#comics {
+#results {
   max-width: 100%; }
-  #comics img {
-    width: 100% !important; }
+  #results img {
+    width: 100% !important;
+    max-width: 400px; }
 
 .input-field > label {
   position: relative !important; }

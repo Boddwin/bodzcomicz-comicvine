@@ -11,19 +11,17 @@ srchBtn.addEventListener('click', function (event) {
 	console.log(txtBox.value); //displays whatever the user has entered into txtBox.
 
 	const query = `make_request.php?searchoption=${choice.value}&searchterm=${txtBox.value}`;
-	// const query = `make_request.php?searchterm=${txtBox.value}`;
 
-	// fetch(`make_request.php?searchoption=${choice.value}&?searchterm=${txtBox.value}`).then(function(response) {
-		fetch(query).then(function(response) {
+	
+	const myNode = document.getElementById("results");
+	myNode.innerHTML = '';
+
+	fetch(query).then(function(response) {
 		return response.json();
 	}).then(function(json) {
 		const comics = json;
 		console.log(comics);
-	
-		comics.results.forEach(function(comic){
-			// console.log(`Title ${comic.name} Description ${comic.description} Image ${comic.image.meduim_url}`);		
-		})
-	
+
 		const comicsFragment = document.createDocumentFragment(); 
 		comics.results.forEach(function(comic){
 	
@@ -42,7 +40,7 @@ srchBtn.addEventListener('click', function (event) {
 			comicsFragment.appendChild(newImage);
 		});
 	
-		const comicsDiv = document.querySelector("#comics"); 
+		const comicsDiv = document.querySelector("#results"); 
 		comicsDiv.appendChild(comicsFragment); 
 		
 	});
