@@ -30,23 +30,31 @@ srchBtn.addEventListener('click', function (event) {
 				
 				const selectedTitle = document.createElement('h2');
 				const selectedTitleText = document.createTextNode(`${comic.name}`);
-				selectedTitle.appendChild(selectedTitleText);
-
+				const selectedResourceType = document.createElement('h4');
+				const selectedResourceTypeText = document.createTextNode(`Resource type: ${comic.resource_type}`);
 				const newAlias = document.createElement("div");
-				newAlias.innerHTML = `${comic.aliases}`;
-
 				const newDeck = document.createElement('p');
 				const newDeckText = document.createTextNode(`${comic.deck}`);
-				newDeck.appendChild(newDeckText);
-
+				const newIssueNo = document.createElement('p');
+				const newIssueNoText = document.createTextNode(`Issue Number: ${comic.issue_number}`);
 				const newImage = document.createElement("img");
-				newImage.src = `${comic.image.small_url}`;	
+				const newDiv = document.createElement("div");
 
+				selectedTitle.appendChild(selectedTitleText);
+				selectedResourceType.appendChild(selectedResourceTypeText);				
+				newAlias.innerHTML = `${comic.aliases}`;
+				newDeck.appendChild(newDeckText);
+				newIssueNo.appendChild(newIssueNoText);
+				newImage.src = `${comic.image.small_url}`;					
+				newDiv.innerHTML = `${comic.description}`;
 
 				selectedComicsFragment.appendChild(selectedTitle);
+				selectedComicsFragment.appendChild(selectedResourceType);
 				selectedComicsFragment.appendChild(newAlias);
 				selectedComicsFragment.appendChild(newDeck); 
+				selectedComicsFragment.appendChild(newIssueNo);
 				selectedComicsFragment.appendChild(newImage);
+				selectedComicsFragment.appendChild(newDiv)
 
 				const comicsDiv = document.querySelector("#results"); 
 				comicsDiv.appendChild(selectedComicsFragment); 
@@ -60,30 +68,14 @@ srchBtn.addEventListener('click', function (event) {
 			const newTitle = document.createElement("h2");
 			const newTitleText = document.createTextNode(`${comic.name}`);
 
-			const newAlias = document.createElement("div");
-			// const newAliasText = document.createTextNode(`${comic.aliases}`);
-
-			const newDeck = document.createElement('p');
-			const newDeckText = document.createTextNode(`${comic.deck}`);
-	
-			// const newDiv = document.createElement("div");			
 			const newImage = document.createElement("img");
 
 			newTitle.setAttribute('class', 'result-title');
 			newTitle.appendChild(newTitleText);
 
-			// newAlias.appendChild(newAliasText);
-			newAlias.innerHTML = `${comic.aliases}`;
-
-			newDeck.appendChild(newDeckText);
-
-			// newDiv.innerHTML = `${comic.description}`;
 			newImage.src = `${comic.image.small_url}`;		
 	
 			comicsFragment.appendChild(newTitle);
-			comicsFragment.appendChild(newAlias);
-			comicsFragment.appendChild(newDeck); 
-			// comicsFragment.appendChild(newDiv);
 			comicsFragment.appendChild(newImage);
 
 			newTitle.addEventListener("click",getShowMsgFnc(comic),false); // add an event listener
