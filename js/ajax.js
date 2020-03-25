@@ -21,76 +21,10 @@ srchBtn.addEventListener('click', function (event) {
 		const comics = json;
 		console.log(comics);
 
-		function getShowMsgFnc(comic){
-			return function(){
-				console.log(comic.name+" has an ID of "+comic.id);
-				myNode.textContent = '';
-
-				const selectedComicsFragment = document.createDocumentFragment(); 
-				
-				const selectedTitle = document.createElement('h2');
-				const selectedTitleText = document.createTextNode(`${comic.name}`);
-				const selectedResourceType = document.createElement('h4');
-				const selectedResourceTypeText = document.createTextNode(`Resource type: ${comic.resource_type}`);
-				const newAlias = document.createElement("div");
-				const newDeck = document.createElement('p');
-				const newDeckText = document.createTextNode(`${comic.deck}`);
-				const newIssueNo = document.createElement('p');
-				const newIssueNoText = document.createTextNode(`Issue Number: ${comic.issue_number}`);
-				const newImage = document.createElement("img");
-				const newDiv = document.createElement("div");
-
-				selectedTitle.appendChild(selectedTitleText);
-				selectedResourceType.appendChild(selectedResourceTypeText);				
-				newAlias.innerHTML = `${comic.aliases}`;
-				newDeck.appendChild(newDeckText);
-				newIssueNo.appendChild(newIssueNoText);
-				newImage.src = `${comic.image.small_url}`;					
-				newDiv.innerHTML = `${comic.description}`;
-
-				selectedComicsFragment.appendChild(selectedTitle);
-				selectedComicsFragment.appendChild(selectedResourceType);
-				selectedComicsFragment.appendChild(newAlias);
-				selectedComicsFragment.appendChild(newDeck); 
-				selectedComicsFragment.appendChild(newIssueNo);
-				selectedComicsFragment.appendChild(newImage);
-				selectedComicsFragment.appendChild(newDiv)
-
-				const comicsDiv = document.querySelector("#results"); 
-				comicsDiv.appendChild(selectedComicsFragment); 
-
-				document.addEventListener("DOMContentLoaded", function() {
-					var lazyImages = [].slice.call(document.querySelectorAll("js-lazy-load-image"));
-				  
-					if ("IntersectionObserver" in window) {
-					  let lazyImageObserver = new IntersectionObserver(function(entries, observer) {
-						entries.forEach(function(entry) {
-						  if (entry.isIntersecting) {
-							let lazyImage = entry.target;
-							lazyImage.src = lazyImage.dataset.src;
-							lazyImage.srcset = lazyImage.dataset.srcset;
-							lazyImage.classList.remove("lazy");
-							lazyImageObserver.unobserve(lazyImage);
-						  }
-						});
-					  });
-				  
-					  lazyImages.forEach(function(lazyImage) {
-						lazyImageObserver.observe(lazyImage);
-					  });
-					} else {
-					  // Possibly fall back to a more compatible method here
-					}
-				  });
-
-			  }
-		  }
-
 		const comicsFragment = document.createDocumentFragment(); 
 		comics.results.forEach(function(comic){
 
-			const newTitle = document.createElement('h2');
-			
+			const newTitle = document.createElement('h2');			
 			const resource = comic.resource_type;							
 	
 			if (comic.name !== null){		
@@ -129,16 +63,66 @@ srchBtn.addEventListener('click', function (event) {
 				comicsFragment.appendChild(publisher);
 			};
 			
+			if (comic.deck !== null){
 			const newDeck = document.createElement('p');
 			const newDeckText = document.createTextNode(`${comic.deck}`);
 			newDeck.appendChild(newDeckText);
-			comicsFragment.appendChild(newDeck);	
+			comicsFragment.appendChild(newDeck);
+			};	
 
 			newTitle.addEventListener("click",getShowMsgFnc(comic),false); // add an event listener
 		});
 	
 		const comicsDiv = document.querySelector("#results"); 
 		comicsDiv.appendChild(comicsFragment); 
+
+		function getShowMsgFnc(comic){
+			return function(){
+				console.log(comic.name+" has an ID of "+comic.id);
+				myNode.textContent = '';
+
+				const selectedComicsFragment = document.createDocumentFragment(); 
+				
+				const selectedTitle = document.createElement('h2');
+				const selectedTitleText = document.createTextNode(`${comic.name}`);
+				selectedTitle.appendChild(selectedTitleText);
+				selectedComicsFragment.appendChild(selectedTitle);				
+
+				const selectedResourceType = document.createElement('h5');
+				const selectedResourceTypeText = document.createTextNode(`Resource type: ${comic.resource_type}`);
+				selectedResourceType.appendChild(selectedResourceTypeText);
+				selectedComicsFragment.appendChild(selectedResourceType);	
+
+				if (comic.aliases !== null){
+					const newAlias = document.createElement("div");
+					newAlias.innerHTML = `${comic.aliases}`;
+					selectedComicsFragment.appendChild(newAlias);
+				}
+				
+				if (comic.deck !== null){
+					const newDeck = document.createElement('p');
+					const newDeckText = document.createTextNode(`${comic.deck}`);
+					newDeck.appendChild(newDeckText);
+					selectedComicsFragment.appendChild(newDeck);
+				}
+
+				const newIssueNo = document.createElement('p');
+				const newIssueNoText = document.createTextNode(`Issue Number: ${comic.issue_number}`);
+				newIssueNo.appendChild(newIssueNoText);
+				selectedComicsFragment.appendChild(newIssueNo);
+
+				const newImage = document.createElement("img");
+				newImage.src = `${comic.image.small_url}`;
+				selectedComicsFragment.appendChild(newImage);
+
+				const newDiv = document.createElement("div");
+				newDiv.innerHTML = `${comic.description}`;
+				selectedComicsFragment.appendChild(newDiv)
+
+				const comicsDiv = document.querySelector("#results"); 
+				comicsDiv.appendChild(selectedComicsFragment); 
+			  }
+		  }
 		
 	});
 });
