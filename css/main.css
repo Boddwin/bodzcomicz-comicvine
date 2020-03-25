@@ -17,6 +17,9 @@ figure {
 .result-title {
   color: red; }
 
+.result-title-issue {
+  font-size: 24px; }
+
 .input-field > label {
   position: relative !important; }
 
