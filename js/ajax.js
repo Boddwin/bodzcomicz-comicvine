@@ -170,9 +170,8 @@ srchBtn.addEventListener('click', function (event) {
 				document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
 
 				//Save to favourites
-				favesBtn.addEventListener('click', function () {
-				// const resultJson=JSON.stringify(comic); //convert array into JSON
-				const saved = window.localStorage.setItem(comic.id, JSON.stringify(comic)); //store data in web storage
+				favesBtn.addEventListener('click', function () {				
+				const saved = window.localStorage.setItem(comic.resource_type + comic.id, JSON.stringify(comic));
 				console.log(saved);
 				});
 			  }
@@ -183,40 +182,16 @@ srchBtn.addEventListener('click', function (event) {
 //retrieve items from localStorage
 retrieveBtn.addEventListener('click', function (){
 	myNode.textContent = '';
-	// const keyName = window.localStorage.key(index);
-	// console.log(keyName);
 
-	// saved.forEach(function(retrieved){
-	retrieved = JSON.parse(window.localStorage.getItem(saved));
-	console.log(retrieved); 
-	
 	const savedComicsFragment = document.createDocumentFragment();
 
-	const newTitle = document.createElement('h4');
-			// const resource = comic.resource_type;
+	for (var i = 0; i < localStorage.length; i++){
+		savedComicsFragment.append(localStorage.getItem(localStorage.key(i)));
+		// retrieved = JSON.parse(localStorage.getItem(localStorage.key(i)));
+		// savedComicsFragment.append(retrieved);
+		console.log(localStorage.getItem(localStorage.key(i)));
+	}
 
-			if (retrieved.name !== null){ 
-				const newTitleText = document.createTextNode(`${retrieved.name}`)
-				newTitle.appendChild(newTitleText);
-			}
-			 else if (retrieved.volume.name !== null){ 
-				const newTitleText = document.createTextNode(`${retrieved.volume.name}: Issue ${retrieved.issue_number}`)
-				newTitle.appendChild(newTitleText);	
-			};		
-
-			newTitle.setAttribute('class', 'result-title');	
-			savedComicsFragment.appendChild(newTitle);
-
-			const newImage = document.createElement('img');
-				newImage.src = `${retrieve.image.small_url}`;
-				savedComicsFragment.appendChild(newImage);
-
-			
-
-
-	// const newDiv = document.createElement("div");
-	// newDiv.innerHTML = retrieve;
-	// savedComicsFragment.appendChild(newDiv);
 	const comicsDiv = document.querySelector("#results"); 
 	comicsDiv.appendChild(savedComicsFragment);
 })
