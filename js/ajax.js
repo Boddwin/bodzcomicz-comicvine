@@ -199,16 +199,16 @@ retrieveBtn.addEventListener('click', function (){
 
 	const savedComicsFragment = document.createDocumentFragment();
 	
-	retrievedItems.forEach(function(retreived){
+	retrievedItems.forEach(function(retrieved){
 
 	const newTitle = document.createElement('h4');
 
-			if (retreived.name !== null){ 
-				const newTitleText = document.createTextNode(`${retreived.name}`)
+			if (retrieved.name !== null){ 
+				const newTitleText = document.createTextNode(`${retrieved.name}`)
 				newTitle.appendChild(newTitleText);
 			}
 			 else if (retrieved.volume.name !== null){ 
-				const newTitleText = document.createTextNode(`${retreived.volume.name}: Issue ${retreived.issue_number}`)
+				const newTitleText = document.createTextNode(`${retrieved.volume.name}: Issue ${retrieved.issue_number}`)
 				newTitle.appendChild(newTitleText);	
 			};		
 
@@ -216,12 +216,115 @@ retrieveBtn.addEventListener('click', function (){
 		savedComicsFragment.appendChild(newTitle);
 
 		const newImage = document.createElement('img');
-			newImage.src = `${retreived.image.small_url}`;
+			newImage.src = `${retrieved.image.small_url}`;
 			savedComicsFragment.appendChild(newImage);	
 
-			newTitle.addEventListener("click",getShowMsgFnc(retrievedItems),false);
+			newTitle.addEventListener("click",showDetails(retrieved),false);
+
+			function showDetails(retrieved){
+				return function(){
+					console.log(retrieved.name+" has an ID of "+retrieved.id);
+
+					myNode.textContent = '';
+
+					const selectedComicsFragment = document.createDocumentFragment(); 
+					
+					const newTitle = document.createElement('h4');
+					const resource = retrieved.resource_type;
+			
+					if (retrieved.name !== null){ 
+						const newTitleText = document.createTextNode(`${retrieved.name}`)
+						newTitle.appendChild(newTitleText);
+					}
+					 else if (retrieved.volume.name !== null){ 
+						const newTitleText = document.createTextNode(`${retrieved.volume.name}: Issue ${retrieved.issue_number}`)
+						newTitle.appendChild(newTitleText);	
+					};		
+			
+					newTitle.setAttribute('class', 'result-title');	
+					selectedComicsFragment.appendChild(newTitle);
+			
+					const newImage = document.createElement('img');
+						newImage.src = `${retrieved.image.small_url}`;
+						selectedComicsFragment.appendChild(newImage);
+					
+					if (retrieved.deck !== null){
+						const newDeck = document.createElement('p');
+						const newDeckText = document.createTextNode(`${retrieved.deck}`);
+						newDeck.appendChild(newDeckText);
+						selectedComicsFragment.appendChild(newDeck);
+					}
+			
+					if(resource == 'character'){
+						const newAlias = document.createElement("div");
+						newAlias.innerHTML = `Alliases: ${retrieved.aliases}`;
+						selectedComicsFragment.appendChild(newAlias);
+					};
+			
+					if(resource == 'issue'){
+						const newIssueNo = document.createElement('p');
+						const newIssueNoText = document.createTextNode(`Issue Number: ${retrieved.issue_number}`);
+						newIssueNo.appendChild(newIssueNoText);
+						selectedComicsFragment.appendChild(newIssueNo);
+						const volumeName = document.createElement('p');
+						const volumeNameText = document.createTextNode(`Volume: ${retrieved.volume.name}`);
+						volumeName.appendChild(volumeNameText);
+						selectedComicsFragment.appendChild(volumeName);
+					};
+			
+					if(resource == 'series'){
+						const publisher = document.createElement('p');
+						const publisherText = document.createTextNode(`Publisher: ${retrieved.publisher.name}`);
+						publisher.appendChild(publisherText);
+						selectedComicsFragment.appendChild(publisher);
+						const seriesCount = document.createElement('p');
+						const seriesCountText = document.createTextNode(`Number of episodes: ${retrieved.count_of_episodes}`);
+						seriesCount.appendChild(seriesCountText);
+						selectedComicsFragment.appendChild(seriesCount);
+						const startYear = document.createElement('p');
+						const startYearText = document.createTextNode(`Year first aired: ${retrieved.start_year}`);
+						startYear.appendChild(startYearText);
+						selectedComicsFragment.appendChild(startYear);
+					};
+			
+					if(resource == 'volume'){
+						const publisher = document.createElement('p');
+						const publisherText = document.createTextNode(`Publisher: ${retrieved.publisher.name}`);
+						publisher.appendChild(publisherText);
+						selectedComicsFragment.appendChild(publisher);
+						const yearPublished = document.createElement('p');
+						const yearPublishedText = document.createTextNode(`Year Published: ${retrieved.start_year}`);
+						yearPublished.appendChild(yearPublishedText);
+						selectedComicsFragment.appendChild(yearPublished);
+						const issueCount = document.createElement('p');
+						const issueCountText = document.createTextNode(`Number of issues: ${retrieved.count_of_issues}`);
+						issueCount.appendChild(issueCountText);
+						selectedComicsFragment.appendChild(issueCount);
+					};
+			
+					const resourceType = document.createElement('p');			
+					const resourceToUpperCase = resource.replace(/^\w/, c => c.toUpperCase());
+					const resourceTypeText = document.createTextNode(`Resource type: ${resourceToUpperCase}`);
+					resourceType.appendChild(resourceTypeText);
+					selectedComicsFragment.appendChild(resourceType);
+			
+					if (retrieved.description !== null){
+					const newDiv = document.createElement("div");
+					newDiv.innerHTML = `${retrieved.description}`;
+					selectedComicsFragment.appendChild(newDiv);
+					};
+			
+					const comicsDiv = document.querySelector("#results"); 
+					comicsDiv.appendChild(selectedComicsFragment); 
+			
+					document.body.scrollTop = 0; // For Safari
+					document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
+				}
+			};
 	});
-	
+
+
+
 	const comicsDiv = document.querySelector("#results"); 
 	comicsDiv.appendChild(savedComicsFragment);
 })
