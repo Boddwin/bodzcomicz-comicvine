@@ -4,6 +4,7 @@ const faves = document.querySelector(".favourites");
 const retrieveBtn = document.querySelector(".retrieveBtn");
 
 const myNode = document.getElementById("results");
+let savedItems = []; 
 
 
 srchBtn.addEventListener('click', function (event) {
@@ -171,8 +172,17 @@ srchBtn.addEventListener('click', function (event) {
 
 				//Save to favourites
 				favesBtn.addEventListener('click', function () {				
-				const saved = window.localStorage.setItem(comic.resource_type + comic.id, JSON.stringify(comic));
-				console.log(saved);
+				if(!localStorage.getItem('saved')) {
+					localStorage.setItem('saved', JSON.stringify(comic));
+				  } else {
+					const prevSavedItems = localStorage.getItem('saved');  
+					savedItems.push(prevSavedItems);
+					savedItems.push(comic);
+					const newSaveJson = JSON.stringify(savedItems);
+					const newSave = localStorage.setItem("saved", newSaveJson);
+					console.log(newSave);
+					console.log(savedItems);
+				  }
 				});
 			  }
 		  }		
@@ -182,16 +192,50 @@ srchBtn.addEventListener('click', function (event) {
 //retrieve items from localStorage
 retrieveBtn.addEventListener('click', function (){
 	myNode.textContent = '';
+	// const keyName = window.localStorage.key(index);
+	// console.log(keyName);
+
+	for (var i = 0; i < localStorage.length; i++){
+        const savedComics = (localStorage.getItem(localStorage.key(i)));
+        // retrieved = JSON.parse(localStorage.getItem(localStorage.key(i)));
+        // savedComicsFragment.append(retrieved);
+        console.log(savedComics);
+	}
+
+	const savedComics = (localStorage.getItem('saved'));
+
+	retrievedItems = JSON.parse(savedComics);
 
 	const savedComicsFragment = document.createDocumentFragment();
 
-	for (var i = 0; i < localStorage.length; i++){
-		savedComicsFragment.append(localStorage.getItem(localStorage.key(i)));
-		// retrieved = JSON.parse(localStorage.getItem(localStorage.key(i)));
-		// savedComicsFragment.append(retrieved);
-		console.log(localStorage.getItem(localStorage.key(i)));
-	}
+// 	retrieved = JSON.parse(window.localStorage.getItem(saved));
+// 	console.log(retrieved); 
+	
+// 	const savedComicsFragment = document.createDocumentFragment();
 
+	const newTitle = document.createElement('h4');
+			// const resource = saved.resource_type;
+
+			if (retrievedItems.name !== null){ 
+				const newTitleText = document.createTextNode(`${retrievedItems.name}`)
+				newTitle.appendChild(newTitleText);
+			}
+			 else if (retrieved.volume.name !== null){ 
+				const newTitleText = document.createTextNode(`${retrievedItems.volume.name}: Issue ${retrievedItems.issue_number}`)
+				newTitle.appendChild(newTitleText);	
+			};		
+
+			newTitle.setAttribute('class', 'result-title');	
+			savedComicsFragment.appendChild(newTitle);
+
+			const newImage = document.createElement('img');
+				newImage.src = `${retrievedItems.image.small_url}`;
+				savedComicsFragment.appendChild(newImage);	
+
+
+// 	// const newDiv = document.createElement("div");
+// 	// newDiv.innerHTML = retrieve;
+// 	// savedComicsFragment.appendChild(newDiv);
 	const comicsDiv = document.querySelector("#results"); 
 	comicsDiv.appendChild(savedComicsFragment);
 })
