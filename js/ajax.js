@@ -328,3 +328,36 @@ retrieveBtn.addEventListener('click', function (){
 	const comicsDiv = document.querySelector("#results"); 
 	comicsDiv.appendChild(savedComicsFragment);
 })
+
+
+// history
+
+let state = {};
+let title = "";
+let url   = "next-page.html";
+
+srchBtn.addEventListener('click', function (){
+	
+// console.log("search button was clicked");
+// history.pushState(null, null, "search-results.html")
+url = "search-results.html";
+history.pushState(state, title, url);
+
+});
+
+
+// //this event is triggered when the back button is hit
+// window.addEventListener('popstate', function(evnt) {
+// 	changeScreen(evnt.state.page);
+// });
+
+
+// var container = document.querySelector('#results');
+
+// container.addEventListener('click', function(e) {
+//   if (e.target != e.currentTarget) {
+//     e.preventDefault();
+//     // e.target is the image inside the link we just clicked.
+//   }
+//   e.stopPropagation();
+// }, false);
