@@ -14,16 +14,33 @@ figure {
     }
 }
 
+.brand-logo {
+    font-family: 'Bangers', cursive;
+    font-size: 3rem!important;
+}
+
 #results {
     max-width: 100%;
+    h2 {
+        font-family: 'Bangers', cursive;
+    }
+}
+
+.results-grid {
     img {
-        width: 100%!important;
-        max-width: 400px;
+        width: 75%!important;
+    }
+}
+
+.results-list {
+    img {
+        max-width: 100%!important;
     }
 }
 
 .result-title {
     color: red;
+    font-family: 'Bangers', cursive;
 }
 
 .result-title-issue {
@@ -41,4 +58,8 @@ select {
     position: fixed;
     top: 93%;
     left: 80%;
+}
+
+.btn-small {
+    margin-top: 10px;
 }

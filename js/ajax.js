@@ -5,8 +5,6 @@ const retrieveBtn = document.querySelector(".retrieveBtn");
 
 const myNode = document.getElementById("results");
 
-
-
 srchBtn.addEventListener('click', function (event) {
 	event.preventDefault();	
 	const element = document.getElementById("favBtn");
@@ -33,7 +31,7 @@ srchBtn.addEventListener('click', function (event) {
 		const comicsFragment = document.createDocumentFragment(); 
 		comics.results.forEach(function(comic){
 
-			const newTitle = document.createElement('h4');
+			const newTitle = document.createElement('h3');
 			const resource = comic.resource_type;
 
 			if (comic.name !== null){ 
@@ -49,7 +47,8 @@ srchBtn.addEventListener('click', function (event) {
 			comicsFragment.appendChild(newTitle);
 
 			const newImage = document.createElement('img');
-				newImage.src = `${comic.image.small_url}`;
+				newImage.src = `${comic.image.screen_url}`;
+				newImage.setAttribute('class', 'z-depth-3');
 				comicsFragment.appendChild(newImage);
 
 			if(resource == 'volume'){
@@ -64,15 +63,32 @@ srchBtn.addEventListener('click', function (event) {
 				element.classList.remove("hide");
 			  };
 
-			  
+			  function addGridClass() {
+				var element = document.getElementById("results");
+				element.classList.remove('results-list');
+				element.classList.add("results-grid");
+			  };
+			
+			addGridClass();
 			newTitle.addEventListener("click",getShowMsgFnc(comic),false);
 			newTitle.addEventListener("click",revealFavouritesBtn,false);
 		});
 	
 		const comicsDiv = document.querySelector("#results"); 
-		comicsDiv.appendChild(comicsFragment); 
+		
+		comicsDiv.appendChild(comicsFragment); 	
 
-	
+		//animates headings and main results images in
+		const titles = document.querySelectorAll('.result-title');
+		anime({
+			targets: titles,
+			translateY: -5
+		});
+		const pictures = document.querySelectorAll('#results img');
+		anime({
+			targets: pictures,
+			translateY: -10
+		});
 	});
 });
 
@@ -83,7 +99,7 @@ function getShowMsgFnc(comic){
 
 		const selectedComicsFragment = document.createDocumentFragment(); 
 		
-		const newTitle = document.createElement('h4');
+		const newTitle = document.createElement('h3');
 		const resource = comic.resource_type;
 
 		if (comic.name !== null){ 
@@ -100,6 +116,7 @@ function getShowMsgFnc(comic){
 
 		const newImage = document.createElement('img');
 			newImage.src = `${comic.image.small_url}`;
+			newImage.setAttribute('class', 'z-depth-3');
 			selectedComicsFragment.appendChild(newImage);
 		
 		if (comic.deck !== null){
@@ -188,7 +205,28 @@ function getShowMsgFnc(comic){
 			console.log(newSave);
 		  }
 		});
+
+		function addResultsListClass() {
+			var element = document.getElementById("results");
+			element.classList.remove('results-grid');
+			element.classList.add("results-list");
+		  };
+		
+		  addResultsListClass();
+
+				//animates headings and main results images in
+				const titles = document.querySelectorAll('.result-title');
+				anime({
+					targets: titles,
+					translateY: -5
+				});
+				const pictures = document.querySelectorAll('#results img');
+				anime({
+					targets: pictures,
+					translateY: -10
+				});
 	  }
+	  
   }	
 
 //retrieve items from localStorage
@@ -201,7 +239,7 @@ retrieveBtn.addEventListener('click', function (){
 	
 	retrievedItems.forEach(function(retrieved){
 
-	const newTitle = document.createElement('h4');
+	const newTitle = document.createElement('h3');
 
 			if (retrieved.name !== null){ 
 				const newTitleText = document.createTextNode(`${retrieved.name}`)
@@ -217,6 +255,7 @@ retrieveBtn.addEventListener('click', function (){
 
 		const newImage = document.createElement('img');
 			newImage.src = `${retrieved.image.small_url}`;
+			newImage.setAttribute('class', 'z-depth-3');
 			savedComicsFragment.appendChild(newImage);	
 
 			newTitle.addEventListener("click",showDetails(retrieved),false);
@@ -229,7 +268,7 @@ retrieveBtn.addEventListener('click', function (){
 
 					const selectedComicsFragment = document.createDocumentFragment(); 
 					
-					const newTitle = document.createElement('h4');
+					const newTitle = document.createElement('h3');
 					const resource = retrieved.resource_type;
 			
 					if (retrieved.name !== null){ 
@@ -246,6 +285,7 @@ retrieveBtn.addEventListener('click', function (){
 			
 					const newImage = document.createElement('img');
 						newImage.src = `${retrieved.image.small_url}`;
+						newImage.setAttribute('class', 'z-depth-3');
 						selectedComicsFragment.appendChild(newImage);
 					
 					if (retrieved.deck !== null){
@@ -323,41 +363,66 @@ retrieveBtn.addEventListener('click', function (){
 			};
 	});
 
-
-
 	const comicsDiv = document.querySelector("#results"); 
 	comicsDiv.appendChild(savedComicsFragment);
 })
 
+//history------------------------
 
-// history
-
-let state = {};
-let title = "";
-let url   = "next-page.html";
-
-srchBtn.addEventListener('click', function (){
-	
-// console.log("search button was clicked");
-// history.pushState(null, null, "search-results.html")
-url = "search-results.html";
-history.pushState(state, title, url);
-
-});
-
-
-// //this event is triggered when the back button is hit
-// window.addEventListener('popstate', function(evnt) {
-// 	changeScreen(evnt.state.page);
+// document.addEventListener('DOMContentLoaded', ()=>{
+// 	window.addEventListener("hashchange", hc);
+// 	window.addEventListener("popstate", ps);
 // });
 
+// function hc(ev){
+// 	// ev.newURL ev.oldURL
+// 	show("hashchange");
+// }
+// function ps(ev){
+// 	//ev.state
+// 	show("popstate");
+// }
 
-// var container = document.querySelector('#results');
+let page1Link;
+let page2Link;
+let page1;
+let page2;
 
-// container.addEventListener('click', function(e) {
-//   if (e.target != e.currentTarget) {
-//     e.preventDefault();
-//     // e.target is the image inside the link we just clicked.
-//   }
-//   e.stopPropagation();
-// }, false);
+
+
+function changeScreen(id){
+	if(id==="1"){
+		// page1.classList.remove("hide");
+		// page2.classList.add("hide");
+	}else{
+		// page1.classList.add("hide");
+		// page2.classList.remove("hide");
+	}
+}
+
+function linkHandler(evnt){
+	evnt.preventDefault(); //stop the default hyperlink
+	const id = evnt.target.getAttribute("data-page"); //get the id of the screen to make visible
+	console.log('data-page:',id);
+	changeScreen(id);
+	history.pushState({"page":id},null, id);
+}
+
+//this event is triggered when the back button is hit
+window.addEventListener('popstate', function(evnt) {
+	changeScreen(evnt.state.page);
+});
+
+function init(){
+
+	page1Link = document.querySelector(".searchBtn");
+	page2Link = document.querySelector(".result-title");
+	page1 = document.querySelector("#page1");
+	page2 = document.querySelector("#page2");
+
+	page1Link.addEventListener("click",linkHandler,false);
+	page2Link.addEventListener("click",linkHandler,false);
+
+}
+
+init();

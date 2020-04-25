@@ -1,0 +1,22 @@
+{
+    "short_name": "BodzComicz",
+    "name": "Comics: Utilising the ComicVine API",
+    "description": "Comics collectors app",
+    "icons": [
+      {
+        "src": "/images/icons/BodzComicz-Logo-192.png",
+        "type": "image/png",
+        "sizes": "192x192"
+      },
+      {
+        "src": "/images/icons/BodzComicz-Logo-512.png",
+        "type": "image/png",
+        "sizes": "512x512"
+      }
+    ],
+    "start_url": "/",
+    "background_color": "#3367D6",
+    "display": "standalone",
+    "scope": "/",
+    "theme_color": "#3367D6"
+  }

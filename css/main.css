@@ -8,14 +8,24 @@ figure {
   figure img {
     max-width: 400px !important; }
 
+.brand-logo {
+  font-family: 'Bangers', cursive;
+  font-size: 3rem !important; }
+
 #results {
   max-width: 100%; }
-  #results img {
-    width: 100% !important;
-    max-width: 400px; }
+  #results h2 {
+    font-family: 'Bangers', cursive; }
+
+.results-grid img {
+  width: 75% !important; }
+
+.results-list img {
+  max-width: 100% !important; }
 
 .result-title {
-  color: red; }
+  color: red;
+  font-family: 'Bangers', cursive; }
 
 .result-title-issue {
   font-size: 24px; }
@@ -30,5 +40,8 @@ select {
   position: fixed;
   top: 93%;
   left: 80%; }
+
+.btn-small {
+  margin-top: 10px; }
 
 /*# sourceMappingURL=main.css.map */
