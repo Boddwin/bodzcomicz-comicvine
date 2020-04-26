@@ -426,3 +426,32 @@ function init(){
 }
 
 init();
+
+// Register service worker to control making site work offline
+if('serviceWorker' in navigator) {
+	navigator.serviceWorker
+			 .register('/sw.js')
+			 .then(function(registration) {
+				console.log('Registration successful, scope is:', registration.scope);
+			  });
+  }
+  
+  
+  // Code to handle install prompt
+  const addIconBtn = document.querySelector('#myBtn');
+  
+  let promptForAddIcon;
+  function triggerThePrompt(){
+	//the button has been clicked
+	promptForAddIcon.prompt();
+  }
+  
+  function setUpAddIcon(evnt){
+	console.log("Set up add icon")
+	console.log(evnt);
+	evnt.preventDefault();
+	promptForAddIcon = evnt; 
+	addIconBtn.addEventListener('click',triggerThePrompt,false)
+  }
+  
+  window.addEventListener('beforeinstallprompt',setUpAddIcon, false);
