@@ -3,6 +3,37 @@ const favesBtn = document.querySelector(".js-add-to-favourites");
 const faves = document.querySelector(".favourites");
 const retrieveBtn = document.querySelector(".retrieveBtn");
 
+// Register service worker to control making site work offline
+if ('serviceWorker' in navigator) {
+	navigator.serviceWorker.register('/sw.js')
+	.then(function(registration) {
+	  console.log('Registration successful, scope is:', registration.scope);
+	})
+	.catch(function(error) {
+	  console.log('Service worker registration failed, error:', error);
+	});
+  }
+    
+  // Code to handle install prompt
+  const addIconBtn = document.querySelector('#myBtn');
+  
+  let promptForAddIcon;
+  function triggerThePrompt(){
+	//the button has been clicked
+	promptForAddIcon.prompt();
+  }
+  
+  function setUpAddIcon(evnt){
+	console.log("Set up add icon")
+	console.log(evnt);
+	evnt.preventDefault();
+	promptForAddIcon = evnt; 
+	addIconBtn.addEventListener('click',triggerThePrompt,false)
+  }
+  
+  window.addEventListener('beforeinstallprompt',setUpAddIcon, false);
+
+// page layout -----------
 const myNode = document.getElementById("results");
 
 const mainLogo = document.querySelector('.home-image');
@@ -11,6 +42,8 @@ anime({
 	scale: 10,
 	duration: 3000
   });
+
+ //search functionality ---------- 
 
 srchBtn.addEventListener('click', function (event) {
 	event.preventDefault();	
@@ -199,7 +232,7 @@ function getShowMsgFnc(comic){
 		document.body.scrollTop = 0; // For Safari
 		document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
 
-		//Save to favourites
+	//Save to favourites ---------------
 		favesBtn.addEventListener('click', function () {				
 		if(!localStorage.getItem('saved')) {  //checks if 'saved' already exists in localstorage
 			const savedItems = [];
@@ -238,7 +271,7 @@ function getShowMsgFnc(comic){
 	  
   }	
 
-//retrieve items from localStorage
+//retrieve items from localStorage  ---------------------
 retrieveBtn.addEventListener('click', function (){
 	myNode.textContent = '';
 	const savedComics = (localStorage.getItem('saved'));
@@ -462,32 +495,3 @@ function init(){
 }
 
 init();
-
-// Register service worker to control making site work offline
-if('serviceWorker' in navigator) {
-	navigator.serviceWorker
-			 .register('/sw.js')
-			 .then(function(registration) {
-				console.log('Registration successful, scope is:', registration.scope);
-			  });
-  }
-  
-  
-  // Code to handle install prompt
-  const addIconBtn = document.querySelector('#myBtn');
-  
-  let promptForAddIcon;
-  function triggerThePrompt(){
-	//the button has been clicked
-	promptForAddIcon.prompt();
-  }
-  
-  function setUpAddIcon(evnt){
-	console.log("Set up add icon")
-	console.log(evnt);
-	evnt.preventDefault();
-	promptForAddIcon = evnt; 
-	addIconBtn.addEventListener('click',triggerThePrompt,false)
-  }
-  
-  window.addEventListener('beforeinstallprompt',setUpAddIcon, false);
