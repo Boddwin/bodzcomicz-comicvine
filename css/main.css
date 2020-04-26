@@ -16,11 +16,13 @@ figure {
   max-width: 100%; }
   #results h2 {
     font-family: 'Bangers', cursive; }
-  #results .home-image {
-    width: 10%;
-    position: relative;
-    top: 170px;
-    left: 44%; }
+  #results .logo-container {
+    display: inline-block; }
+    #results .logo-container .home-image {
+      width: 10%;
+      position: relative;
+      top: 170px;
+      left: 44%; }
 
 .results-grid {
   text-align: center; }

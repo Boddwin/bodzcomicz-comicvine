@@ -24,12 +24,15 @@ figure {
     h2 {
         font-family: 'Bangers', cursive;
     }
-    .home-image {
-        width: 10%;
-        position: relative;
-        top: 170px;
-        left: 44%;
-    }
+    .logo-container {
+        display: inline-block;
+        .home-image {
+            width: 10%;
+            position: relative;
+            top: 170px;
+            left: 44%;
+        }
+    }    
 }
 
 .results-grid {

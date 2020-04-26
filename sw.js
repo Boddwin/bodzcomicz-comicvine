@@ -1,24 +1,25 @@
+var cacheName = 'BodzComicz';
+var filesToCache = [
+  '/',
+  '/index.html',
+  '/css/main.css',
+  '/js/ajax.js'
+];
 
-//when the service worker is installed cache the assets
+/* Start the service worker and cache all of the app's content */
 self.addEventListener('install', function(e) {
-    e.waitUntil(
-      caches.open('BodzComicz').then(function(cache) {
-        return cache.addAll([
-          './',
-          './index.html',
-          './js/ajax.js',
-          './css/main.css'
-        ]);
-      })
-    );
-   });
-   
-   //when the app makes a request, serve relevant files from cache
-   self.addEventListener('fetch', function(e) {
-     console.log(e.request.url);
-     e.respondWith(
-       caches.match(e.request).then(function(response) {
-         return response || fetch(e.request);
-       })
-     );
-   });
+  e.waitUntil(
+    caches.open(cacheName).then(function(cache) {
+      return cache.addAll(filesToCache);
+    })
+  );
+});
+
+/* Serve cached content when offline */
+self.addEventListener('fetch', function(e) {
+  e.respondWith(
+    caches.match(e.request).then(function(response) {
+      return response || fetch(e.request);
+    })
+  );
+});

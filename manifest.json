@@ -1,6 +1,6 @@
 {
     "short_name": "BodzComicz",
-    "name": "Comics: Utilising the ComicVine API",
+    "name": "BodzComicz: Comics utilising the ComicVine API",
     "description": "Comics collectors app",
     "icons": [
       {
@@ -14,7 +14,7 @@
         "sizes": "512x512"
       }
     ],
-    "start_url": "/bodzcomicz-comicvine",
+    "start_url": "http://localhost:8888/bodzcomicz-comicvine/",
     "background_color": "#3367D6",
     "display": "standalone",
     "scope": "/",

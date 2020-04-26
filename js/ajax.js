@@ -5,7 +5,7 @@ const retrieveBtn = document.querySelector(".retrieveBtn");
 
 // Register service worker to control making site work offline
 if ('serviceWorker' in navigator) {
-	navigator.serviceWorker.register('/sw.js')
+	navigator.serviceWorker.register('/bodzcomicz-comicvine/sw.js')
 	.then(function(registration) {
 	  console.log('Registration successful, scope is:', registration.scope);
 	})
@@ -32,6 +32,8 @@ if ('serviceWorker' in navigator) {
   }
   
   window.addEventListener('beforeinstallprompt',setUpAddIcon, false);
+
+
 
 // page layout -----------
 const myNode = document.getElementById("results");
