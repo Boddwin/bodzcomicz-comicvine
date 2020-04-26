@@ -5,6 +5,13 @@ const retrieveBtn = document.querySelector(".retrieveBtn");
 
 const myNode = document.getElementById("results");
 
+const mainLogo = document.querySelector('.home-image');
+anime({
+	targets: mainLogo,
+	scale: 10,
+	duration: 3000
+  });
+
 srchBtn.addEventListener('click', function (event) {
 	event.preventDefault();	
 	const element = document.getElementById("favBtn");
@@ -64,8 +71,9 @@ srchBtn.addEventListener('click', function (event) {
 			  };
 
 			  function addGridClass() {
-				var element = document.getElementById("results");
+				const element = document.getElementById("results");
 				element.classList.remove('results-list');
+				element.classList.remove("favourites-list");
 				element.classList.add("results-grid");
 			  };
 			
@@ -207,8 +215,9 @@ function getShowMsgFnc(comic){
 		});
 
 		function addResultsListClass() {
-			var element = document.getElementById("results");
+			const element = document.getElementById("results");
 			element.classList.remove('results-grid');
+			element.classList.remove("favourites-list");
 			element.classList.add("results-list");
 		  };
 		
@@ -236,6 +245,15 @@ retrieveBtn.addEventListener('click', function (){
 	retrievedItems = JSON.parse(savedComics);
 
 	const savedComicsFragment = document.createDocumentFragment();
+
+	function addFavouritesClass() {
+		const element = document.getElementById("results");
+		element.classList.remove('results-list');
+		element.classList.remove("results-grid");
+		element.classList.add("favourites-list");
+	  };
+	
+	  addFavouritesClass();
 	
 	retrievedItems.forEach(function(retrieved){
 
@@ -265,6 +283,15 @@ retrieveBtn.addEventListener('click', function (){
 					console.log(retrieved.name+" has an ID of "+retrieved.id);
 
 					myNode.textContent = '';
+
+					function addResultsListClass() {
+						const element = document.getElementById("results");
+						element.classList.remove('results-grid');
+						element.classList.remove("favourites-list");
+						element.classList.add("results-list");
+					};
+					
+					  addResultsListClass();
 
 					const selectedComicsFragment = document.createDocumentFragment(); 
 					
@@ -352,7 +379,7 @@ retrieveBtn.addEventListener('click', function (){
 					const newDiv = document.createElement("div");
 					newDiv.innerHTML = `${retrieved.description}`;
 					selectedComicsFragment.appendChild(newDiv);
-					};
+					};					
 			
 					const comicsDiv = document.querySelector("#results"); 
 					comicsDiv.appendChild(selectedComicsFragment); 
@@ -362,6 +389,15 @@ retrieveBtn.addEventListener('click', function (){
 				}
 			};
 	});
+
+	function addFavouritesClass() {
+		const element = document.getElementById("results");
+		element.classList.remove('results-list');
+		element.classList.remove("results-grid");
+		element.classList.add("favourites-list");
+	  };
+	
+	  addFavouritesClass();
 
 	const comicsDiv = document.querySelector("#results"); 
 	comicsDiv.appendChild(savedComicsFragment);

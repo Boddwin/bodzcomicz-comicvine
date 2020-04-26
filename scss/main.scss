@@ -24,9 +24,16 @@ figure {
     h2 {
         font-family: 'Bangers', cursive;
     }
+    .home-image {
+        width: 10%;
+        position: relative;
+        top: 170px;
+        left: 44%;
+    }
 }
 
 .results-grid {
+    text-align: center;
     img {
         width: 75%!important;
     }
@@ -35,6 +42,13 @@ figure {
 .results-list {
     img {
         max-width: 100%!important;
+    }
+}
+
+.favourites-list {
+    text-align: center;
+    img {
+        width: 75%!important;
     }
 }
 

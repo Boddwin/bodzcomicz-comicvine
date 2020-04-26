@@ -16,12 +16,24 @@ figure {
   max-width: 100%; }
   #results h2 {
     font-family: 'Bangers', cursive; }
+  #results .home-image {
+    width: 10%;
+    position: relative;
+    top: 170px;
+    left: 44%; }
 
-.results-grid img {
-  width: 75% !important; }
+.results-grid {
+  text-align: center; }
+  .results-grid img {
+    width: 75% !important; }
 
 .results-list img {
   max-width: 100% !important; }
+
+.favourites-list {
+  text-align: center; }
+  .favourites-list img {
+    width: 75% !important; }
 
 .result-title {
   color: red;
