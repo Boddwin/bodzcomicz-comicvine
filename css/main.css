@@ -40,9 +40,8 @@ figure {
 .result-title {
   color: red;
   font-family: 'Bangers', cursive; }
-
-.result-title-issue {
-  font-size: 24px; }
+  .result-title-issue {
+    font-size: 24px; }
 
 .input-field > label {
   position: relative !important; }

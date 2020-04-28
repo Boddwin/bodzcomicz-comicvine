@@ -1,7 +1,7 @@
-const srchBtn = document.querySelector(".searchBtn");
+const srchBtn = document.querySelector(".search-btn");
 const favesBtn = document.querySelector(".js-add-to-favourites");
 const faves = document.querySelector(".favourites");
-const retrieveBtn = document.querySelector(".retrieveBtn");
+const retrieveBtn = document.querySelector(".retrieve-btn");
 
 // Register service worker to control making site work offline
 if ('serviceWorker' in navigator) {
@@ -15,7 +15,7 @@ if ('serviceWorker' in navigator) {
   }
     
   // Code to handle install prompt
-  const addIconBtn = document.querySelector('#myBtn');
+  const addIconBtn = document.querySelector('#add-to-home-btn');
   
   let promptForAddIcon;
   function triggerThePrompt(){
@@ -486,7 +486,7 @@ window.addEventListener('popstate', function(evnt) {
 
 function init(){
 
-	page1Link = document.querySelector(".searchBtn");
+	page1Link = document.querySelector(".search-btn");
 	page2Link = document.querySelector(".result-title");
 	page1 = document.querySelector("#page1");
 	page2 = document.querySelector("#page2");

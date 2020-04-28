@@ -58,10 +58,9 @@ figure {
 .result-title {
     color: red;
     font-family: 'Bangers', cursive;
-}
-
-.result-title-issue {
-    font-size: 24px;
+    &-issue {
+        font-size: 24px;
+    }
 }
 
 .input-field>label {

@@ -6,12 +6,9 @@
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
         <!-- Materialize CSS -->
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+        <!-- main styles -->
         <link rel="stylesheet" href="./css/main.css">
         <link href="https://fonts.googleapis.com/css?family=Bangers&display=swap" rel="stylesheet">
-        <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css"> -->
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/lazysizes/5.2.0/lazysizes.min.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.0/anime.min.js"></script>
         <link rel="manifest" href="/bodzcomicz-comicvine/manifest.json"/>
         <meta name="theme-color" content="white"/>
         <link rel="icon" href="/bodzcomicz-comicvine/images/icons/bodzcomicz-logo-192.png" type="image/x-icon" /> 
@@ -22,14 +19,9 @@
             <nav>
               <div class="nav-wrapper">
                 <a href="/bodzcomicz-comicvine/" class="brand-logo">BodzComicz</a>
-                <ul id="nav-mobile" class="right hide-on-med-and-down">
-                  <li><a href="#">Comics</a></li>
-                  <li><a href="#">Characters</a></li>
-                  <li><a href="#">Movies</a></li>
-                </ul>
               </div>
             </nav>
-            <a id="myBtn" class="waves-effect waves-light btn-small">Add to homescreen</a>
+            <a id="add-to-home-btn" class="waves-effect waves-light btn-small">Add to homescreen</a>
             <!-- <h1 class="center-align">BodzComicz</h1> -->
             <div id="search-options">
                 <form>
@@ -50,22 +42,25 @@
                       <!-- <label class="label-icon" for="search"><i class="material-icons">search</i></label> -->
                       <!-- <i class="material-icons">close</i> -->
                     </div>                    
-                    <button class="btn waves-effect waves-light searchBtn" type="submit" name="action">Submit
+                    <button class="btn waves-effect waves-light search-btn" type="submit" name="action">Submit
                       <i class="material-icons right">send</i>
                     </button>
                     <div class="favourites">
-                      <a class="waves-effect waves-light btn-small retrieveBtn">See Favourites</a>
+                      <a class="waves-effect waves-light btn-small retrieve-btn">See Favourites</a>
                     </div>
                 </form>
             </div>
             <div id='results'>
               <div class='logo-container'>
-                <img class='logo-container home-image' src='images/icons/bodzcomicz-logo-512.png'>
+                <img class='home-image' src='images/icons/bodzcomicz-logo-512.png'>
               </div>              
             </div>
             <a id="favBtn" class="btn-floating btn-large waves-effect waves-light red js-add-to-favourites hide"><i class="material-icons">add</i></a>
         </div>    
-        <!-- <script type="module" src="../bodzcomicz-comicvine/node_modules/animejs/lib/anime.es.js"></script> -->
+        <!-- <script type="module" src="../bodzcomicz-comicvine/node_modules/animejs/lib/anime.es.js"></script> -->        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/lazysizes/5.2.0/lazysizes.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.0/anime.min.js"></script>
         <script src="js/ajax.js"></script>
     </body>
 </html>
